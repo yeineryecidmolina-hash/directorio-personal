@@ -1,19 +1,23 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mi Directorio Personal</title>
 
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yeiner Molina - Directorio Personal</title>
+
+```
 <style>
+
     *{
-        box-sizing:border-box;
         margin:0;
         padding:0;
+        box-sizing:border-box;
     }
 
     body{
-        font-family: Arial, sans-serif;
+        font-family:Arial, Helvetica, sans-serif;
         background:#f4f6f9;
         color:#222;
         padding:20px;
@@ -25,71 +29,138 @@
         color:#e0e0e0;
     }
 
-    header{
-        text-align:center;
-        margin-bottom:25px;
+    .encabezado{
+
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        flex-wrap:wrap;
+        gap:20px;
+
+        background:linear-gradient(
+                90deg,
+                #0033A0,
+                #0055cc,
+                #FFD100
+        );
+
+        color:white;
+
+        padding:25px;
+
+        border-radius:15px;
+
+        margin-bottom:20px;
+
+        box-shadow:0 3px 10px rgba(0,0,0,.2);
     }
 
-    h1{
-        background:#1e3a8a;
-        color:white;
-        padding:15px;
-        border-radius:10px;
+    .foto{
+
+        width:140px;
+        height:140px;
+
+        border-radius:50%;
+        object-fit:cover;
+
+        border:4px solid white;
+    }
+
+    .logo{
+        width:220px;
+        max-width:100%;
+    }
+
+    .perfil{
+        text-align:center;
+        flex:1;
+    }
+
+    .perfil h1{
+        font-size:32px;
+        margin-bottom:10px;
+    }
+
+    .perfil p{
+        margin:5px 0;
+        font-size:18px;
     }
 
     .barra{
         display:flex;
         gap:10px;
-        margin-top:15px;
         justify-content:center;
         flex-wrap:wrap;
+        margin-bottom:25px;
     }
 
     input{
-        width:350px;
+
+        width:400px;
         max-width:100%;
-        padding:10px;
+
+        padding:12px;
+
         border-radius:8px;
         border:1px solid #ccc;
     }
 
     button{
-        padding:10px 15px;
-        border:none;
-        border-radius:8px;
-        cursor:pointer;
-        background:#2563eb;
+
+        background:#0033A0;
         color:white;
+
+        border:none;
+
+        padding:12px 18px;
+
+        border-radius:8px;
+
+        cursor:pointer;
+
         font-weight:bold;
     }
 
     button:hover{
-        opacity:0.9;
+        opacity:.9;
     }
 
     .favoritos{
+
         background:#fff8dc;
-        border-left:6px solid gold;
-        padding:15px;
-        margin-bottom:20px;
+
+        padding:20px;
+
+        border-left:8px solid #FFD100;
+
         border-radius:10px;
+
+        margin-bottom:20px;
     }
 
     body.dark .favoritos{
-        background:#3d3414;
+        background:#2e2a12;
     }
 
     .contenedor{
+
         display:grid;
-        grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+        grid-template-columns:
+        repeat(auto-fit,minmax(280px,1fr));
+
         gap:20px;
     }
 
     .categoria{
+
         background:white;
-        padding:15px;
+
         border-radius:12px;
-        box-shadow:0 2px 8px rgba(0,0,0,0.15);
+
+        padding:20px;
+
+        box-shadow:0 2px 8px rgba(0,0,0,.15);
     }
 
     body.dark .categoria{
@@ -97,9 +168,13 @@
     }
 
     .categoria h2{
-        color:#1e3a8a;
-        margin-bottom:10px;
+
+        color:#0033A0;
+
+        margin-bottom:12px;
+
         border-bottom:2px solid #ddd;
+
         padding-bottom:5px;
     }
 
@@ -113,7 +188,7 @@
 
     a{
         text-decoration:none;
-        color:#2563eb;
+        color:#0055cc;
         font-weight:bold;
     }
 
@@ -122,127 +197,302 @@
     }
 
     body.dark a{
-        color:#66aaff;
+        color:#7fb3ff;
+    }
+
+    .aviso{
+
+        margin-top:20px;
+
+        background:#eef5ff;
+
+        padding:15px;
+
+        border-radius:10px;
+
+        text-align:center;
+    }
+
+    body.dark .aviso{
+        background:#1a2535;
     }
 
     footer{
-        text-align:center;
+
         margin-top:30px;
+
+        text-align:center;
+
         color:gray;
+
         font-size:12px;
     }
+
+    @media(max-width:768px){
+
+        .encabezado{
+            flex-direction:column;
+        }
+
+        .logo{
+            width:180px;
+        }
+
+        .foto{
+            width:120px;
+            height:120px;
+        }
+    }
+
 </style>
 
 <script>
-function buscar(){
-    let filtro = document.getElementById("busqueda").value.toLowerCase();
-    let enlaces = document.querySelectorAll("li");
 
-    enlaces.forEach(function(item){
-        let texto = item.textContent.toLowerCase();
+    function buscar(){
 
-        if(texto.includes(filtro)){
-            item.style.display = "";
-        }else{
-            item.style.display = "none";
-        }
-    });
-}
+        let filtro =
+            document
+            .getElementById("busqueda")
+            .value
+            .toLowerCase();
 
-function cambiarModo(){
-    document.body.classList.toggle("dark");
-}
+        let elementos =
+            document.querySelectorAll("li");
+
+        elementos.forEach(function(item){
+
+            let texto =
+                item.textContent.toLowerCase();
+
+            if(texto.includes(filtro)){
+                item.style.display="";
+            }else{
+                item.style.display="none";
+            }
+
+        });
+
+    }
+
+    function cambiarModo(){
+
+        document.body.classList.toggle("dark");
+
+    }
+
 </script>
+```
 
 </head>
+
 <body>
 
-<header>
-    <h1>📂 Mi Directorio Personal</h1>
+<header class="encabezado">
 
-    <div class="barra">
-        <input
-            type="text"
-            id="busqueda"
-            placeholder="Buscar enlace..."
-            onkeyup="buscar()">
+```
+<img
+    src="foto reciente.jpg"
+    alt="Yeiner Molina"
+    class="foto">
 
-        <button onclick="cambiarModo()">
-            🌙 Modo Oscuro
-        </button>
-    </div>
+<div class="perfil">
+
+    <h1>Yeiner Molina</h1>
+
+    <p>Cajero Bancario</p>
+
+    <p>Estudiante de Ingeniería de Sistemas</p>
+
+    <p>Nivel de Inglés B1</p>
+
+</div>
+
+<img
+    src="bancolombia.png"
+    alt="Logo"
+    class="logo">
+```
+
 </header>
 
+<div class="barra">
+
+```
+<input
+    type="text"
+    id="busqueda"
+    placeholder="Buscar enlace..."
+    onkeyup="buscar()">
+
+<button onclick="cambiarModo()">
+    🌙 Modo Oscuro
+</button>
+```
+
+</div>
+
 <div class="favoritos">
-    <h2>⭐ Favoritos</h2>
-    <ul>
-        <li><a href="https://chatgpt.com" target="_blank">ChatGPT</a></li>
-        <li><a href="https://academy.oracle.com" target="_blank">Oracle Academy</a></li>
-        <li><a href="https://github.com" target="_blank">GitHub</a></li>
-    </ul>
+
+```
+<h2>⭐ Favoritos</h2>
+
+<ul>
+
+    <li>
+        <a href="https://chatgpt.com" target="_blank">
+            ChatGPT
+        </a>
+    </li>
+
+    <li>
+        <a href="https://academy.oracle.com" target="_blank">
+            Oracle Academy
+        </a>
+    </li>
+
+    <li>
+        <a href="https://github.com" target="_blank">
+            GitHub
+        </a>
+    </li>
+
+</ul>
+```
+
 </div>
 
 <div class="contenedor">
 
-    <div class="categoria">
-        <h2>💼 Trabajo</h2>
-        <ul>
-            <li><a href="#">Correo Corporativo</a></li>
-            <li><a href="#">Portal Empleados</a></li>
-            <li><a href="#">Bancolombia</a></li>
-        </ul>
-    </div>
+```
+<div class="categoria">
 
-    <div class="categoria">
-        <h2>📚 Estudio</h2>
-        <ul>
-            <li><a href="https://academy.oracle.com" target="_blank">Oracle Academy</a></li>
-            <li><a href="https://chatgpt.com" target="_blank">ChatGPT</a></li>
-            <li><a href="https://www.coursera.org" target="_blank">Coursera</a></li>
-        </ul>
-    </div>
+    <h2>💼 Trabajo</h2>
 
-    <div class="categoria">
-        <h2>💻 Programación</h2>
-        <ul>
-            <li><a href="https://developer.mozilla.org" target="_blank">MDN Web Docs</a></li>
-            <li><a href="https://www.w3schools.com" target="_blank">W3Schools</a></li>
-            <li><a href="https://github.com" target="_blank">GitHub</a></li>
-            <li><a href="https://stackoverflow.com" target="_blank">Stack Overflow</a></li>
-        </ul>
-    </div>
+    <ul>
 
-    <div class="categoria">
-        <h2>🌎 Inglés</h2>
-        <ul>
-            <li><a href="https://dictionary.cambridge.org" target="_blank">Cambridge Dictionary</a></li>
-            <li><a href="https://www.wordreference.com" target="_blank">WordReference</a></li>
-            <li><a href="https://www.deepl.com" target="_blank">DeepL</a></li>
-        </ul>
-    </div>
+        <li><a href="#">Correo Corporativo</a></li>
+        <li><a href="#">Portal Empleados</a></li>
+        <li><a href="#">Herramientas Bancarias</a></li>
 
-    <div class="categoria">
-        <h2>🛠 Herramientas</h2>
-        <ul>
-            <li><a href="https://drive.google.com" target="_blank">Google Drive</a></li>
-            <li><a href="https://www.canva.com" target="_blank">Canva</a></li>
-            <li><a href="https://maps.google.com" target="_blank">Google Maps</a></li>
-        </ul>
-    </div>
+    </ul>
 
-    <div class="categoria">
-        <h2>🏦 Bancos y Finanzas</h2>
-        <ul>
-            <li><a href="https://www.bancolombia.com/personas/tarifario" target="_blank">Bancolombia</a></li>
-            <li><a href="https://www.nequi.com.co" target="_blank">Nequi</a></li>
-            <li><a href="https://www.davivienda.com" target="_blank">Davivienda</a></li>
-        </ul>
-    </div>
+</div>
+
+<div class="categoria">
+
+    <h2>📚 Estudio</h2>
+
+    <ul>
+
+        <li>
+            <a href="https://academy.oracle.com" target="_blank">
+                Oracle Academy
+            </a>
+        </li>
+
+        <li>
+            <a href="https://chatgpt.com" target="_blank">
+                ChatGPT
+            </a>
+        </li>
+
+        <li>
+            <a href="https://www.coursera.org" target="_blank">
+                Coursera
+            </a>
+        </li>
+
+    </ul>
+
+</div>
+
+<div class="categoria">
+
+    <h2>💻 Programación</h2>
+
+    <ul>
+
+        <li><a href="https://github.com" target="_blank">GitHub</a></li>
+
+        <li><a href="https://stackoverflow.com" target="_blank">Stack Overflow</a></li>
+
+        <li><a href="https://developer.mozilla.org" target="_blank">MDN</a></li>
+
+        <li><a href="https://www.w3schools.com" target="_blank">W3Schools</a></li>
+
+    </ul>
+
+</div>
+
+<div class="categoria">
+
+    <h2>🌎 Inglés</h2>
+
+    <ul>
+
+        <li><a href="https://dictionary.cambridge.org" target="_blank">Cambridge</a></li>
+
+        <li><a href="https://www.wordreference.com" target="_blank">WordReference</a></li>
+
+        <li><a href="https://www.deepl.com" target="_blank">DeepL</a></li>
+
+    </ul>
+
+</div>
+
+<div class="categoria">
+
+    <h2>🏦 Finanzas</h2>
+
+    <ul>
+
+        <li><a href="https://www.grupobancolombia.com" target="_blank">Bancolombia</a></li>
+
+        <li><a href="https://www.nequi.com.co" target="_blank">Nequi</a></li>
+
+        <li><a href="https://www.davivienda.com" target="_blank">Davivienda</a></li>
+
+    </ul>
+
+</div>
+
+<div class="categoria">
+
+    <h2>🛠 Herramientas</h2>
+
+    <ul>
+
+        <li><a href="https://drive.google.com" target="_blank">Google Drive</a></li>
+
+        <li><a href="https://www.canva.com" target="_blank">Canva</a></li>
+
+        <li><a href="https://maps.google.com" target="_blank">Google Maps</a></li>
+
+    </ul>
+
+</div>
+```
+
+</div>
+
+<div class="aviso">
+
+```
+<strong>Nota:</strong>
+
+Este es un sitio web personal desarrollado por
+Yeiner Molina. No es un sitio oficial ni está
+afiliado a Bancolombia.
+```
 
 </div>
 
 <footer>
-    Directorio Personal - Actualizado 2026
+
+```
+© 2026 - Yeiner Molina
+```
+
 </footer>
 
 </body>
